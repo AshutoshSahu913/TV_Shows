@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#CB04052E"
-        tools:context=".activities.MainActivity">
+        tools:context=".activities.HomePage">
 
         <LinearLayout
             android:id="@+id/linearLayout"

@@ -1,6 +1,7 @@
 package com.example.tvshows.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,13 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tvshows.R;
 import com.example.tvshows.adapters.TVShowAdapter;
 import com.example.tvshows.databinding.ActivityMainBinding;
+import com.example.tvshows.listeners.TVShowListener;
 import com.example.tvshows.models.TVShow;
 import com.example.tvshows.viewmodels.MostPopularTVShowsViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements TVShowListener {
 
     private ActivityMainBinding activityMainBinding;
     private MostPopularTVShowsViewModel viewModel;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private void doInitialization() {
         activityMainBinding.rvTvShows.setHasFixedSize(true);
         viewModel = new ViewModelProvider(this).get(MostPopularTVShowsViewModel.class);
-        tvShowAdapter = new TVShowAdapter(tvShows);
+        tvShowAdapter = new TVShowAdapter(tvShows,this);
         activityMainBinding.rvTvShows.setAdapter(tvShowAdapter);
         activityMainBinding.rvTvShows.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -79,9 +81,29 @@ public class MainActivity extends AppCompatActivity {
 
     private void toggleLoading() {
         if (currentPage == 1) {
-            activityMainBinding.setIsLoading(activityMainBinding.getIsLoading() == null || !activityMainBinding.getIsLoading());
+            if (activityMainBinding.getIsLoading() != null && activityMainBinding.getIsLoading()) {
+                activityMainBinding.setIsLoading(false);
+            } else {
+                activityMainBinding.setIsLoading(true);
+            }
         } else {
-            activityMainBinding.setIsLoadingMore(activityMainBinding.getIsLoadingMore() == null || !activityMainBinding.getIsLoadingMore());
+            if (activityMainBinding.getIsLoadingMore() != null && activityMainBinding.getIsLoadingMore()) {
+                activityMainBinding.setIsLoadingMore(false);
+            } else {
+                activityMainBinding.setIsLoadingMore(true);
+            }
         }
+    }
+
+    @Override
+    public void onTVShowClicked(TVShow tvShow) {
+        Intent intent=new Intent(getApplicationContext(),TVShowDetails.class);
+        intent.putExtra("id",tvShow.getId());
+        intent.putExtra("name",tvShow.getName());
+        intent.putExtra("startDate",tvShow.getStartDate());
+        intent.putExtra("country",tvShow.getCountry());
+        intent.putExtra("network",tvShow.getNetwork());
+        intent.putExtra("status",tvShow.getStatus());
+        startActivity(intent);
     }
 }
