@@ -9,6 +9,7 @@ android {
     defaultConfig {
         applicationId = "com.example.tvshows"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -52,7 +53,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     //picasso
-    implementation ("com.squareup.picasso:picasso:2.8")
+    implementation ("com.squareup.picasso:picasso:2.71828")
 
     //Lifecycle extensions
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
@@ -60,7 +61,7 @@ dependencies {
     //Room & Rxjava Support
     implementation("androidx.room:room-runtime:2.6.0")
     annotationProcessor("androidx.room:room-compiler:2.6.0")
-    implementation("androidx.room:room-rxjava3:2.6.0")
+    implementation("androidx.room:room-rxjava2:2.6.0")
 
     //RxJava
     implementation("io.reactivex.rxjava2:rxandroid:2.0.2")
@@ -71,6 +72,11 @@ dependencies {
 
     //Rounded Image view
     implementation("com.makeramen:roundedimageview:2.3.0")
+
+    implementation ("com.airbnb.android:lottie:4.1.0")
+
+
+
 
 
 }

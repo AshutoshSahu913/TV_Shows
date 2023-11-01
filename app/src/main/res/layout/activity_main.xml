@@ -19,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#CB04052E"
+        android:background="#010225"
         tools:context=".activities.HomePage">
 
         <LinearLayout
@@ -49,23 +49,24 @@
                     android:padding="5dp"
                     android:text="@string/homeTitle"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/imgWatchlist"
-                    android:layout_width="10dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:padding="10dp"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+
+                    android:layout_gravity="center"
                     android:src="@drawable/baseline_star_rate_24" />
 
                 <ImageView
                     android:id="@+id/imgSearch"
-                    android:layout_width="10dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_gravity="center"
+
                     android:layout_weight="0.5"
-                    android:padding="10dp"
                     android:src="@drawable/baseline_search_24" />
             </LinearLayout>
 
@@ -74,7 +75,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/_4sdp"
                 android:paddingTop="@dimen/_4sdp"

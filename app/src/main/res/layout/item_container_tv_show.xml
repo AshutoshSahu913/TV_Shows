@@ -30,7 +30,7 @@
             android:background="@drawable/background_tv_show"
             android:paddingBottom="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txtName"
+            app:layout_constraintTop_toTopOf="@+id/textName"
             tools:layout_editor_absoluteX="4dp" />
 
         <com.makeramen.roundedimageview.RoundedImageView
@@ -45,10 +45,10 @@
             app:riv_corner_radius="@dimen/_4sdp" />
 
         <TextView
-            android:id="@+id/txtName"
+            android:id="@+id/textName"
             android:layout_width="0dp"
-            android:layout_marginStart="@dimen/_5sdp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:fontFamily="@font/ubuntu_medium"
@@ -68,12 +68,12 @@
             android:layout_marginTop="@dimen/_3sdp"
             android:fontFamily="@font/ubuntu_condensed_regular"
             android:includeFontPadding="false"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="@color/yellow"
             android:text='@{tvShow.network + " ("+ tvShow.country+ ")"}'
-            app:layout_constraintEnd_toEndOf="@id/txtName"
-            app:layout_constraintStart_toStartOf="@id/txtName"
-            app:layout_constraintTop_toBottomOf="@id/txtName" />
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@id/textName"
+            app:layout_constraintStart_toStartOf="@id/textName"
+            app:layout_constraintTop_toBottomOf="@id/textName" />
 
         <TextView
             android:id="@+id/txtStarted"
@@ -82,11 +82,11 @@
             android:layout_marginTop="@dimen/_3sdp"
             android:fontFamily="@font/ubuntu_condensed_regular"
             android:includeFontPadding="false"
-            android:textColor="@color/white"
             android:text='@{"Started on: "+tvShow.startDate}'
+            android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="@id/txtName"
-            app:layout_constraintStart_toStartOf="@id/txtName"
+            app:layout_constraintEnd_toEndOf="@id/textName"
+            app:layout_constraintStart_toStartOf="@id/textName"
             app:layout_constraintTop_toBottomOf="@id/txtNetwork" />
 
         <TextView
@@ -99,8 +99,21 @@
             android:text="@{tvShow.status}"
             android:textColor="@color/green"
             android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="@id/txtName"
-            app:layout_constraintStart_toStartOf="@id/txtName"
+            app:layout_constraintEnd_toEndOf="@id/textName"
+            app:layout_constraintStart_toStartOf="@id/textName"
             app:layout_constraintTop_toBottomOf="@id/txtStarted" />
+
+        <ImageView
+            android:id="@+id/imgDelete"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_4sdp"
+            android:src="@drawable/baseline_delete_forever_24"
+
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@android:color/holo_red_light" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

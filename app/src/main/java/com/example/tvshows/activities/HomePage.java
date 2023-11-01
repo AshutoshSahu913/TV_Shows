@@ -3,6 +3,7 @@ package com.example.tvshows.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,24 +56,27 @@ public class HomePage extends AppCompatActivity implements TVShowListener {
                 }
             }
         });
+        activityMainBinding.imgWatchlist.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Watchlist.class)));
+
+        activityMainBinding.imgSearch.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),Search.class)));
         getMostPopularTVShows();
     }
 
 
     @SuppressLint("NotifyDataSetChanged")
     private void getMostPopularTVShows() {
-//        activityMainBinding.setIsLoading(true);
+
         toggleLoading();
         viewModel.getMostPopularTVShows(currentPage).observe(this, mostPopularTVShowsResponse -> {
             toggleLoading();
-//            activityMainBinding.setIsLoading(false);
+
             if (mostPopularTVShowsResponse != null) {
                 totalAvailablePages = mostPopularTVShowsResponse.getTotalPages();
                 if (mostPopularTVShowsResponse.getTvShows() != null) {
                     int oldCount = tvShows.size();
                     tvShows.addAll(mostPopularTVShowsResponse.getTvShows());
                     tvShowAdapter.notifyItemRangeInserted(oldCount, tvShows.size());
-//                    tvShowAdapter.notifyDataSetChanged();
+
                 }
             }
 
@@ -98,12 +102,8 @@ public class HomePage extends AppCompatActivity implements TVShowListener {
     @Override
     public void onTVShowClicked(TVShow tvShow) {
         Intent intent=new Intent(getApplicationContext(),TVShowDetails.class);
-        intent.putExtra("id",tvShow.getId());
-        intent.putExtra("name",tvShow.getName());
-        intent.putExtra("startDate",tvShow.getStartDate());
-        intent.putExtra("country",tvShow.getCountry());
-        intent.putExtra("network",tvShow.getNetwork());
-        intent.putExtra("status",tvShow.getStatus());
+
+        intent.putExtra("tvShow",tvShow);
         startActivity(intent);
     }
 }

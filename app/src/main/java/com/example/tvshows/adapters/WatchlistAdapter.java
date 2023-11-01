@@ -1,30 +1,28 @@
 package com.example.tvshows.adapters;
 
 import android.view.LayoutInflater;
-
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.example.tvshows.databinding.ItemContainerTvShowBinding;
-import com.example.tvshows.listeners.TVShowListener;
+
+import com.example.tvshows.listeners.WatchlistListener;
 import com.example.tvshows.models.TVShow;
-
-
 
 import java.util.List;
 
-public class TVShowAdapter extends RecyclerView.Adapter<TVShowAdapter.TVShowViewHolder> {
+public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.TVShowViewHolder> {
     private final List<TVShow> tvShows;
     private LayoutInflater layoutInflater;
-    private static TVShowListener tvShowListener;
+    private static  WatchlistListener watchlistListener;
 
-    public TVShowAdapter(List<TVShow> tvShows, TVShowListener tvShowListener) {
+    public WatchlistAdapter(List<TVShow> tvShows, WatchlistListener watchlistListener) {
         this.tvShows = tvShows;
-        TVShowAdapter.tvShowListener =tvShowListener;
+        WatchlistAdapter.watchlistListener =watchlistListener;
     }
 
 
@@ -62,7 +60,9 @@ public class TVShowAdapter extends RecyclerView.Adapter<TVShowAdapter.TVShowView
         public void bindTVShow(TVShow tvShow) {
             itemContainerTvShowBinding.setTvShow(tvShow);
             itemContainerTvShowBinding.executePendingBindings();
-            itemContainerTvShowBinding.getRoot().setOnClickListener(v -> tvShowListener.onTVShowClicked(tvShow));
+            itemContainerTvShowBinding.getRoot().setOnClickListener(v -> watchlistListener.onTVShowClicked(tvShow));
+            itemContainerTvShowBinding.imgDelete.setOnClickListener(v -> watchlistListener.removeTvShowFromWatchlist(tvShow, getAdapterPosition()));
+            itemContainerTvShowBinding.imgDelete.setVisibility(View.VISIBLE);
         }
 
     }
